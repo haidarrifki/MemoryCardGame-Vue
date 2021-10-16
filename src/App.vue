@@ -1,6 +1,6 @@
 <template>
   <Title />
-  <CardContainer :gameFinish="gameFinish" />
+  <CardContainer :gameFinish="gameFinish" :startGame="start" />
   <Modal ref="Modal" />
   <DashBoard :showResult="showResult" />
 </template>
@@ -22,22 +22,21 @@ export default {
         },
       ],
       showResult: false,
+      start: false,
     };
   },
   methods: {
     setPlayer(name) {
       this.players[0].name = name;
       this.$refs.Modal.closeModal();
-      console.log(this.players);
     },
     setPoint(point) {
       this.players[0].score = point;
-      this.$refs.Modal.openModal();
+      // this.$refs.Modal.openModal();
       console.log(this.players[0]);
     },
     gameFinish(result) {
       this.showResult = result;
-      console.log(this.showResult);
     },
   },
   components: {
