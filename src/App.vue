@@ -2,7 +2,7 @@
   <Title />
   <CardContainer :gameFinish="gameFinish" />
   <Modal ref="Modal" />
-  <DashBoard />
+  <DashBoard :showResult="showResult" />
 </template>
 
 <script>
@@ -52,7 +52,6 @@ export default {
       players: this.players,
       setPlayer: this.setPlayer,
       setPoint: this.setPoint,
-      showResult: this.showResult,
     };
   },
 };
