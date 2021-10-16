@@ -16,7 +16,7 @@
 </template>
 <script>
 import CardItem from "./CardItem.vue";
-import ScoreBar from "./ScoreBar.vue";
+import ScoreBar from "./ScoreBoard.vue";
 import { InitialGame } from "../../utils/game";
 export default {
   props: ["gameFinish"],
@@ -102,7 +102,6 @@ export default {
           if (this.memoryCards.every((card) => card.isMatched === true)) {
             this.setPoint(this.interval);
             clearInterval(this.interval);
-            console.log(this.interval);
             this.finish = true;
             this.gameFinish(this.finish);
           }
