@@ -1,19 +1,15 @@
 <template>
-  <div class="d-flex flex-row justify-content-center py-3">
-    <div class="turns p-3">
-      <span class="btn btn-info"
-        >Turns :
-        <span class="badge" :class="finish ? 'badge-success' : 'badge-light'">
-          {{ turns }}</span
-        >
+  <div id="scoreboard" class="">
+    <div class="score">
+      <p>Turns</p>
+      <span class="actualscore">
+        <span class="badge"> {{ turns }}</span>
       </span>
     </div>
-    <div class="totalTime p-3">
-      <span class="btn btn-info"
-        >Total Time :
-        <span class="badge" :class="finish ? 'badge-success' : 'badge-light'"
-          >{{ min }} : {{ sec }}</span
-        ></span
+    <div class="score">
+      <p>Total Time</p>
+      <span class="">
+        <span class="badge">{{ min }} : {{ sec }}</span></span
       >
     </div>
   </div>
@@ -24,10 +20,29 @@ export default {
 };
 </script>
 <style>
-.badge-success {
-  background-color: green;
+#scoreboard {
+  display: flex;
+  width: 20vw;
+  margin: 15px auto;
 }
-.badge-light {
-  background-color: red;
+
+#scoreboard::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.score {
+  float: left;
+  width: 33vw;
+  height: 40px;
+  background-color: #eee4da;
+  color: #776e65;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.score:last-of-type {
+  margin-left: 4vw;
 }
 </style>
