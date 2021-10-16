@@ -19,7 +19,7 @@ import CardItem from "./CardItem.vue";
 import ScoreBar from "./ScoreBoard.vue";
 import { InitialGame } from "../../utils/game";
 export default {
-  props: ["gameFinish"],
+  props: ["gameFinish", "startGame"],
   components: {
     CardItem,
     ScoreBar,
@@ -68,7 +68,7 @@ export default {
       memoryCards: [],
       flippedCards: [],
       finish: false,
-      start: false,
+      start: this.startGame,
       turns: 0,
       totalTime: {
         minutes: 0,
@@ -77,6 +77,7 @@ export default {
     };
   },
   created() {
+    console.log(this.start);
     this.memoryCards = InitialGame(this.memoryCards);
   },
   methods: {
