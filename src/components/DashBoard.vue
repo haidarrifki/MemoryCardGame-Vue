@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-mask">
+  <div class="modal-mask" v-if="this.showResult">
     <div class="modal-wrapper">
       <div class="container">
         <div class="bg-circles">
@@ -22,9 +22,6 @@ export default {
   name: "LeaderBoard",
   inject: ["players"],
   props: ["showResult"],
-  updated: () => {
-    console.log(this.showResult);
-  },
 };
 </script>
 <style  scoped>
