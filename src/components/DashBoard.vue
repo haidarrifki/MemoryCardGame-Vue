@@ -1,30 +1,18 @@
 <template>
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Point</th>
-    </tr>
-    <tr v-for="(user, i) in players" :key="i">
-      <td>2</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.score }}</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Tim Cook</td>
-      <td>45</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Ernst Handel</td>
-      <td>40</td>
-    </tr>
-  </table>
+  <transition name="modal">
+    <div class="modal-mask" v-if="this.showResult">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+          <div class="modal-body">Your score is {{ showResult }}</div>
+        </div>
+      </div>
+    </div>
+  </transition>
 </template>
 <script>
 export default {
   name: "LeaderBoard",
-  inject: ["players"],
+  inject: ["players", "showResult"],
 };
 </script>
+<style></style>

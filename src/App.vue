@@ -1,15 +1,15 @@
 <template>
   <Title />
-  <CardContainer />
+  <CardContainer :gameFinish="gameFinish" />
   <Modal ref="Modal" />
-  <LeaderBoard />
+  <DashBoard />
 </template>
 
 <script>
 import Title from "./components/Title.vue";
 import CardContainer from "./components/CardContainer.vue";
 import Modal from "./components/Modal.vue";
-import LeaderBoard from "./components/DashBoard.vue";
+import DashBoard from "./components/DashBoard.vue";
 
 export default {
   name: "App",
@@ -21,6 +21,7 @@ export default {
           score: null,
         },
       ],
+      showResult: false,
     };
   },
   methods: {
@@ -34,12 +35,16 @@ export default {
       this.$refs.Modal.openModal();
       console.log(this.players[0]);
     },
+    gameFinish(result) {
+      this.showResult = result;
+      console.log(this.showResult);
+    },
   },
   components: {
     Title,
     CardContainer,
     Modal,
-    LeaderBoard,
+    DashBoard,
   },
 
   provide() {
@@ -47,6 +52,7 @@ export default {
       players: this.players,
       setPlayer: this.setPlayer,
       setPoint: this.setPoint,
+      showResult: this.showResult,
     };
   },
 };

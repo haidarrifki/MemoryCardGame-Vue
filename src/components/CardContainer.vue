@@ -19,6 +19,7 @@ import CardItem from "./CardItem.vue";
 import ScoreBar from "./ScoreBar.vue";
 import { InitialGame } from "../../utils/game";
 export default {
+  props: ["gameFinish"],
   components: {
     CardItem,
     ScoreBar,
@@ -103,6 +104,7 @@ export default {
             clearInterval(this.interval);
             console.log(this.interval);
             this.finish = true;
+            this.gameFinish(this.finish);
           }
         }, 400);
       } else {
