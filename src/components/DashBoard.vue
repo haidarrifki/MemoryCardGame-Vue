@@ -12,7 +12,7 @@
           Thank you for your interest in this game. Your score is <br />
           {{ this.players[0].score }}
         </p>
-        <button id="btn-continue">Play Again</button>
+        <button id="btn-continue" @click="gameRestart()">Play Again</button>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
 <script>
 export default {
   name: "LeaderBoard",
-  inject: ["players"],
+  inject: ["players", "gameRestart"],
   props: ["showResult"],
 };
 </script>

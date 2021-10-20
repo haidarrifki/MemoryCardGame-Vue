@@ -1,6 +1,6 @@
 <template>
   <Title />
-  <CardContainer :gameFinish="gameFinish" :startGame="start" />
+  <CardContainer :gameFinish="gameFinish" :startGame="start" :restartGame="restartGame" />
   <Modal ref="Modal" />
   <DashBoard :showResult="showResult" />
 </template>
@@ -23,6 +23,7 @@ export default {
       ],
       showResult: false,
       start: false,
+      restartGame: false
     };
   },
   methods: {
@@ -33,11 +34,17 @@ export default {
     setPoint(point) {
       this.players[0].score = point;
       // this.$refs.Modal.openModal();
-      console.log(this.players[0]);
     },
     gameFinish(result) {
+      this.restartGame = false;
       this.showResult = result;
     },
+    gameRestart() {
+      // reset point result and play again
+      this.players[0].score = 0;
+      this.showResult = false;
+      this.restartGame = true;
+    }
   },
   components: {
     Title,
@@ -51,6 +58,7 @@ export default {
       players: this.players,
       setPlayer: this.setPlayer,
       setPoint: this.setPoint,
+      gameRestart: this.gameRestart
     };
   },
 };
