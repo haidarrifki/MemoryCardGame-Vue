@@ -7,8 +7,8 @@
   />
   <div class="memoryGame">
     <CardItem
-      v-for="img in memoryCards"
-      :key="img.name"
+      v-for="(img, index) in memoryCards"
+      :key="index"
       :img="img"
       :flipCard="flipCard"
     />
@@ -19,7 +19,7 @@ import CardItem from "./CardItem.vue";
 import ScoreBar from "./ScoreBoard.vue";
 import { InitialGame } from "../../utils/game";
 export default {
-  props: ["gameFinish", "startGame"],
+  props: ["gameFinish", "startGame", "restartGame"],
   components: {
     CardItem,
     ScoreBar,
@@ -69,6 +69,7 @@ export default {
       flippedCards: [],
       finish: false,
       start: this.startGame,
+      restart: this.restartGame,
       turns: 0,
       totalTime: {
         minutes: 0,
@@ -77,8 +78,15 @@ export default {
     };
   },
   created() {
-    console.log(this.start);
     this.memoryCards = InitialGame(this.memoryCards);
+  },
+  watch: {
+    restartGame(val) {
+      // watch if restart game value is change to true
+      if (val) {
+        this._restartGame();
+      }
+    }
   },
   methods: {
     flipCard(card) {
@@ -121,7 +129,6 @@ export default {
       this.interval = setInterval(this._tick, 1000);
       this.start = true;
     },
-
     _tick() {
       if (this.totalTime.seconds !== 59) {
         this.totalTime.seconds++;
@@ -130,6 +137,14 @@ export default {
 
       this.totalTime.minutes++;
       this.totalTime.seconds = 0;
+    },
+    _restartGame() {
+      // reset data
+      Object.assign(this.$data, this.$options.data.apply(this));
+      // reshuffle cards
+      this.memoryCards = InitialGame(this.memoryCards);
+      // start new game
+      this._startGame();
     },
   },
   computed: {
